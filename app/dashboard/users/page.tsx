@@ -20,7 +20,7 @@ const page = () => {
                 </li>
 
                 <li>
-                    <Link href="/dashboard/users4/">User 4</Link>
+                    <Link href="/dashboard/users/4">User 4</Link>
                 </li>
 
 
