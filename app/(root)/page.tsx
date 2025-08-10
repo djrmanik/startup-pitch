@@ -1,15 +1,18 @@
 import SearchForm from "@/components/SearchForm"
+import StartupCard from "@/components/StartupCard";
 
 export default async function Home( {searchParams}: {searchParams: Promise<{query?: string}>}) {
     const query = (await searchParams).query;
 
     const posts = [{
-        _createdAt: 'Yesterday',
+        _createdAt: new Date(),
         views: 55,
         author: { _id: 1 },
         _id: 1,
         description: 'This is a description',
-        image: ''
+        image: "https://unsplash.com/id/foto/panel-surya-hitam-dan-perak-HCha-UHkIg8",
+        category: "Energy",
+        title: "Solar Panel"
     }];
     
     return (
@@ -32,7 +35,15 @@ export default async function Home( {searchParams}: {searchParams: Promise<{quer
                 </p>
 
                 <ul className="mt-7 grid md:grid-cols-3 sm:grid-cols-2 gap-5">
-
+                    {posts?.length > 0 ? (
+                        posts.map((post: StartupCardType) => (
+                            <StartupCard key={post?._id} post={post} />
+                        ))
+                    ) : (
+                        <p className="text-black-300 text-center col-span-full">
+                            No startups found
+                        </p>
+                    )}
                 </ul>
             </section>
         </>
