@@ -5,7 +5,10 @@ import SearchFormReset from "@/app/components/SearchFormReset"
 const SearchForm = ( { query }: { query?: string } ) => {
 
     return (
-        <Form action="/" scroll={false} className=" @apply max-w-3xl w-full min-h-[80px] bg-white border-[5px] border-black rounded-[80px] text-[24px] mt-8 px-5 flex flex-row items-center gap-5">
+        <Form 
+        action="/" 
+        scroll={false} 
+        className="search-form max-w-3xl w-full min-h-[80px] bg-white border-[5px] border-black rounded-[80px] text-[24px] mt-8 px-5 flex flex-row items-center gap-5">
             <input
                 name="query"
                 defaultValue={query}
@@ -17,7 +20,7 @@ const SearchForm = ( { query }: { query?: string } ) => {
                 {query && <SearchFormReset />}
 
                 <button type="submit" className="size-[50px] rounded-full bg-black flex justify-center items-center !important text-white"> 
-
+                    S
                 </button>
             </div>
         </Form>
