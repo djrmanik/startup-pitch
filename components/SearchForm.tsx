@@ -21,7 +21,7 @@ const SearchForm = ( { query }: { query?: string } ) => {
                 {query && <SearchFormReset />}
 
                 <button type="submit" className="size-[50px] rounded-full bg-black flex justify-center items-center !important text-white"> 
-                    <Search className="size-10"/>
+                    <Search className="w-10 h-10 shrink-0"/>
                 </button>
             </div>
         </Form>
