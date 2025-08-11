@@ -7,7 +7,7 @@ export default async function Home( {searchParams}: {searchParams: Promise<{quer
     const posts = [{
         _createdAt: new Date(),
         views: 55,
-        author: { _id: 1 },
+        author: { _id: 1, name: "John Doe" },
         _id: 1,
         description: 'This is a description',
         image: "https://unsplash.com/id/foto/panel-surya-hitam-dan-perak-HCha-UHkIg8",
