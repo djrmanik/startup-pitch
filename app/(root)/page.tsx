@@ -1,19 +1,25 @@
 import SearchForm from "@/components/SearchForm"
-import StartupCard from "@/components/StartupCard";
+import StartupCard, { StartupTypeCard } from "@/components/StartupCard";
+import { client } from "@/sanity/lib/client";
+import { STARTUPS_QUERY } from "@/sanity/lib/queries";
+
 
 export default async function Home( {searchParams}: {searchParams: Promise<{query?: string}>}) {
     const query = (await searchParams).query;
 
-    const posts = [{
-        _createdAt: new Date(),
-        views: 55,
-        author: { _id: 1, name: "Albany Siswanto" },
-        _id: 1,
-        description: 'This is a description',
-        image: "https://images.unsplash.com/photo-1491677533189-49af044391ed?q=80&w=1746&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        category: "Energy",
-        title: "Solar Panel"
-    }];
+    const posts = await client.fetch(STARTUPS_QUERY);
+
+
+    // const posts = [{
+    //     _createdAt: new Date(),
+    //     views: 55,
+    //     author: { _id: 1, name: "Albany Siswanto" },
+    //     _id: 1,
+    //     description: 'This is a description',
+    //     image: "https://images.unsplash.com/photo-1491677533189-49af044391ed?q=80&w=1746&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    //     category: "Energy",
+    //     title: "Solar Panel"
+    // }];
     
     return (
         <>
@@ -36,7 +42,7 @@ export default async function Home( {searchParams}: {searchParams: Promise<{quer
 
                 <ul className="mt-7 grid md:grid-cols-3 sm:grid-cols-2 gap-5">
                     {posts?.length > 0 ? (
-                        posts.map((post: StartupCardType) => (
+                        posts.map((post: StartupTypeCard) => (
                             <StartupCard key={post?._id} post={post} />
                         ))
                     ) : (
