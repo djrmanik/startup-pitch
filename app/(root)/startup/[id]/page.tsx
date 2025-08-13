@@ -7,6 +7,9 @@ import { formatDate } from '@/lib/utils';
 import Link from 'next/link';
 import Image from 'next/image';
 
+import mardkdownit from 'markdown-it';
+const md = mardkdownit();
+
 export const experimental_ppr = true;
 
 const Page = async ({ params }: { params: Promise<{ id: string }>}) => {
@@ -14,6 +17,10 @@ const Page = async ({ params }: { params: Promise<{ id: string }>}) => {
 
     const post = await client.fetch(STARTUP_BY_ID_QUERY, { id });
     if(!post) return notFound();
+
+    const parsedContent = md.render(post?.pitch || '');
+
+    
 
     return <>
         <section className="w-full bg-[#EE2B69] min-h-[530px] pattern flex justify-center items-center flex-col py-10 px-6 !min-h[230px]">
@@ -53,6 +60,13 @@ const Page = async ({ params }: { params: Promise<{ id: string }>}) => {
                 </div>
 
                 <h3 className="text-[30px] font-bold text-black">Pitch Details</h3>
+                {parsedContent ? (
+                    <article 
+                    className="prose max-w-4xl font-work-sans break-all"
+                    dangerouslySetInnerHTML={{ __html: parsedContent }}/>
+                ) : (
+                    <p className="text-black-100 text-sm font-normal">No details provided</p>
+                )}
             </div>
         </section>
     </>

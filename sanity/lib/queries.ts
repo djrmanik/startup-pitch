@@ -31,5 +31,5 @@ defineQuery(
         category,
         image,
         pitch
-        }`
+    }`
 )
