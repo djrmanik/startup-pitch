@@ -1,6 +1,6 @@
 // startup/[id]
 import { STARTUP_BY_ID_QUERY } from '@/sanity/lib/queries';
-import React from 'react'
+import React, { Suspense } from 'react'
 import { client } from '@/sanity/lib/client';
 import { notFound } from 'next/navigation';
 import { formatDate } from '@/lib/utils';
@@ -8,6 +8,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import mardkdownit from 'markdown-it';
+import { Skeleton } from '@/components/ui/skeleton';
+import View from '@/components/View';
 const md = mardkdownit();
 
 export const experimental_ppr = true;
@@ -68,7 +70,16 @@ const Page = async ({ params }: { params: Promise<{ id: string }>}) => {
                     <p className="text-black-100 text-sm font-normal">No details provided</p>
                 )}
             </div>
+
+            <hr className="border-dotted bg-zinc-400 max-w-4xl my-10 mx-auto"/>
+
+            /* Editor Selected Startup */
+
+            <Suspense fallback={<Skeleton className="bg-zinc-400 h-10 w-24 rounded-lg fixed bottom-3 right-3"/>}>
+                <View id={id}/>
+            </Suspense>
         </section>
+
     </>
 }
 
