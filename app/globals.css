@@ -1,8 +1,7 @@
 @import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+
 @plugin '@tailwindcss/typography';
-
-
-
 
 
 :root {
@@ -14,8 +13,8 @@
   background-image: linear-gradient(
           to right,
           transparent 49.5%,
-          rgba(251, 232, 67, 0.2) 49.5%,
-          rgba(251, 232, 67, 0.6) 50.5%,
+          rgba(255, 255, 255, 0.2) 49.5%,
+          rgba(255, 255, 255, 0.6) 50.5%,
           transparent 50.5%
   );
   background-size: 5% 100%;
@@ -30,7 +29,13 @@
   @apply flex justify-between items-center;
 } 
   
+@utility pink-container {
+  @apply w-full bg-[#EE2B69] min-h-[530px] pattern flex justify-center items-center flex-col py-10 px-6
+}
 
+textarea::placeholder {
+  color: #7d808795
+}
 
 .search-form {
   /* ? */
